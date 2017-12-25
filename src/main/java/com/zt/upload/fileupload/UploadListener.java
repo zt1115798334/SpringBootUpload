@@ -1,8 +1,8 @@
-package com.zt.upload.controller;
-
-import javax.servlet.http.HttpSession;
+package com.zt.upload.fileupload;
 
 import org.apache.commons.fileupload.ProgressListener;
+
+import javax.servlet.http.HttpSession;
 
 public class UploadListener implements ProgressListener{
 	private HttpSession session;
@@ -23,7 +23,6 @@ public class UploadListener implements ProgressListener{
 		uploadStatus.setUseTime(System.currentTimeMillis()-uploadStatus.getStartTime());
 		uploadStatus.setPercent((int)(100*bytesRead/contentLength));
 		session.setAttribute("upload_status", uploadStatus);
-		
 	}
 	
 }

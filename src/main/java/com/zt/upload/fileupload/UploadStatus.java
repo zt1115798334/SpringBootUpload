@@ -1,4 +1,4 @@
-package com.zt.upload.controller;
+package com.zt.upload.fileupload;
 
 public class UploadStatus {
 	private long bytesRead;//已读数据

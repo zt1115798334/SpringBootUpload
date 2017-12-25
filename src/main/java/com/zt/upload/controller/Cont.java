@@ -1,9 +1,8 @@
 package com.zt.upload.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.zt.upload.fileupload.UploadStatus;
 import com.zt.upload.utils.FileUtils;
 import com.zt.upload.utils.module.UploadFile;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.List;
 
-import com.zt.upload.controller.UploadCommonsMultipartResolver;
 /**
  * @author zhangtong
  * Created by on 2017/12/25
@@ -42,7 +40,7 @@ public class Cont {
         FileUtils fileUtils = new FileUtils();
         List<UploadFile> files = fileUtils.getFiles(request, filePath);
         JSONObject result = new JSONObject();
-        result.put("state",true);
+        result.put("state", true);
         return result;
     }
 
@@ -52,10 +50,12 @@ public class Cont {
      * @param session
      * @return
      */
-//    @ResponseBody
-//    @RequestMapping("getStatus")
-//    public UploadStatus getStatus(HttpSession session) {
-//        System.out.println("widddd：" + (UploadStatus) session.getAttribute("upload_status"));
-//        return (UploadStatus) session.getAttribute("upload_status");
-//    }
+    @ResponseBody
+    @RequestMapping("getStatus")
+    public UploadStatus getStatus(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        System.out.println("widddd：" + (UploadStatus) session.getAttribute("upload_status"));
+        return (UploadStatus) session.getAttribute("upload_status");
+    }
+
 }
